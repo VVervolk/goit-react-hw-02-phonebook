@@ -20,6 +20,9 @@ export class App extends Component {
       alert(`${contact.name} is already in contacts`);
       return;
     }
+
+    contact.id = crypto.randomUUID().slice(0, 7);
+
     this.setState({
       contacts: [...this.state.contacts, contact],
     });
@@ -27,7 +30,9 @@ export class App extends Component {
   };
 
   checkAvailability = contact => {
-    return this.state.contacts.some(option => option.name === contact.name);
+    return this.state.contacts.some(
+      option => option.name.toLowerCase() === contact.name.toLowerCase()
+    );
   };
 
   deleteContact = index => {
@@ -44,6 +49,7 @@ export class App extends Component {
         <Contactsform onSubmit={this.handleSubmit}></Contactsform>
         <h2>Contacts</h2>
         <InputSearch
+          options={contacts}
           value={filter}
           onChange={e => this.setState({ filter: e.target.value })}
         />

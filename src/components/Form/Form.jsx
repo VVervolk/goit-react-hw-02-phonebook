@@ -32,7 +32,6 @@ export class Contactsform extends Component {
     return (
       <Formik
         initialValues={{
-          id: crypto.randomUUID().slice(0, 7),
           name: '',
           number: '',
         }}

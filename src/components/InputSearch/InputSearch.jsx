@@ -10,12 +10,18 @@ export class InputSearch extends Component {
   render() {
     return (
       <div>
-        <p>Find contacts by name</p>
-        <input
-          type="text"
-          value={this.props.filter}
-          onChange={this.props.onChange}
-        />
+        {this.props.options.length > 0 ? (
+          <>
+            <p>Find contacts by name</p>
+            <input
+              type="text"
+              value={this.props.filter}
+              onChange={this.props.onChange}
+            />
+          </>
+        ) : (
+          <p>No contacts here</p>
+        )}
       </div>
     );
   }
